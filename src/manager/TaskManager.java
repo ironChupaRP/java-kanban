@@ -1,4 +1,4 @@
-package taskManager;
+package manager;
 import entities.Epic;
 import entities.Task;
 import entities.Subtask;
@@ -71,7 +71,14 @@ public class TaskManager {
 
     // Удаление подзадачи по Id
     public void deleteSubtaskById(int id) {
-        subtasks.remove(id);
+        Subtask subtask = subtasks.remove(id);
+        if (subtask != null) {
+            Epic epic = epics.get(subtask.getEpicId());
+            if (epic != null) {
+                epic.getSubtaskIds().remove((Integer) id);
+                updateEpicStatus(epic.getId());
+            }
+        }
     }
 
     // Получение всех эпиков

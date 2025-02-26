@@ -2,7 +2,7 @@ import entities.Epic;
 import entities.Subtask;
 import entities.Task;
 import entities.TaskStatus;
-import taskManager.TaskManager;
+import manager.TaskManager;
 
 public class Main {
     public static void main(String[] args) {
