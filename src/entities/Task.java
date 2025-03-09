@@ -6,14 +6,21 @@ public class Task {
     private String description;
     private TaskStatus status;
 
-    public Task(int id, String title, String description){
+    public Task(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = TaskStatus.NEW;
     }
 
-    public int getId(){
+    //Не мог понять как сделать последний тест, в итоге нагуглил, что можно сделать копию задачи
+    public Task copy() {
+        Task copy = new Task(this.id, this.title, this.description);
+        copy.setStatus(this.status);
+        return copy;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -21,19 +28,19 @@ public class Task {
         this.id = id;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public TaskStatus getStatus(){
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(TaskStatus status){
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
@@ -45,5 +52,13 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id;
     }
 }
